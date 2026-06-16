@@ -1,6 +1,7 @@
-# TechSisterhood
+# TechSisterhood 
 
-![Moodboard TechSisterhood](./moodboard.png)
+
+![Moodboard TechSisterhood] <img width="1920" height="1080" alt="moodboard" src="https://github.com/user-attachments/assets/383f6adb-8b2e-4035-aeff-9edb5839d889" />
 
 ## Temática
 Trabajo — búsqueda de empleo en el ámbito tecnológico.
