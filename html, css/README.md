@@ -5,6 +5,7 @@
 
 ## Temática
 Trabajo — búsqueda de empleo en el ámbito tecnológico.
+ODS: 5-Igualdad de género, 8-Trabajo decente y crecimiento económico.
 
 ## Problemática
 La incorporación de mujeres jóvenes al ámbito laboral tecnológico, atravesada por la falta de referencias, el síndrome del impostor y la ausencia de orientación concreta para dar los primeros pasos en el sector.
