@@ -147,9 +147,9 @@ nav .nav-cta:hover { opacity: .85; }
 }
 .features-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(2, 1fr); /* 2 columnas fijas en PC */
   gap: 20px;
-  max-width: 900px;
+  max-width: 700px; /* Ancho ideal ajustado para el formato 2x2 */
   margin: 0 auto;
 }
 .feature-card {
@@ -317,4 +317,9 @@ footer {
   .community-text { text-align: center; }
   .community-text .section-label { text-align: center; }
   .btn-pink-outline { width: 100%; }
+
+  /* Asegura 1 sola columna en pantallas chicas de celular */
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
 }
