@@ -51,8 +51,7 @@ nav .nav-cta:hover { opacity: .85; }
   background-size: cover;
   background-position: center;
   background-blend-mode: multiply;
-  display: flex; align-items: center; justify-content: center;
-  text-align: center;
+  align-items: center;
   padding: 120px 24px 80px;
   position: relative; overflow: hidden;
 }
@@ -70,14 +69,17 @@ nav .nav-cta:hover { opacity: .85; }
   text-transform: uppercase;
   letter-spacing: -1px;
   margin-bottom: 20px;
+  margin-top: 5vh;
+  text-align: left;
+  padding-left: 75px;
 }
 .hero h1 em { color: var(--pink); font-style: normal; }
 .hero p {
   color: rgba(255,255,255,.7);
-  font-size: 1.05rem; line-height: 1.6;
-  max-width: 540px; margin: 0 auto 36px;
+  font-size: 1.18rem; line-height: 1.6;
+  max-width: 570px; margin: 0 auto 36px;
 }
-.hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.hero-btns { display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; }
 
 /* ─── BUTTONS ─── */
 .btn-primary {
