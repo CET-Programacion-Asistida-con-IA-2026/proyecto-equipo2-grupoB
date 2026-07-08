@@ -18,8 +18,8 @@ body {
   overflow-x: hidden;
 }
 
-.hero, .problem, .features, .community-text, .simulacros, .mercado, .cta-final{
-  height: 100vh;
+.hero, .problem, .features, .community, .simulacros, .mercado, .cta-final {
+  min-height: 100vh;
 }
 
 /* ─── NAV ─── */
@@ -75,7 +75,7 @@ nav .nav-cta:hover { opacity: .85; }
   text-transform: uppercase;
   letter-spacing: -1px;
   margin-bottom: 20px;
-  margin-top: 5vh;
+  margin-top: 2vh;
   text-align: left;
   padding-left: 75px;
 }
@@ -85,7 +85,7 @@ nav .nav-cta:hover { opacity: .85; }
   font-size: 1.18rem; line-height: 1.6;
   max-width: 570px; margin: 0 auto 36px;
 }
-.hero-btns { display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; }
+.hero-btns { margin-top: 5%; display: flex; justify-content: center; flex-wrap: wrap; }
 
 /* ─── BUTTONS ─── */
 .btn-primary {
@@ -94,7 +94,17 @@ nav .nav-cta:hover { opacity: .85; }
   padding: 13px 30px; font-size: .95rem; font-weight: 700;
   cursor: pointer; transition: transform .15s, opacity .2s;
 }
+
+#botonPrincipal{
+  font-size: 1.5rem; line-height: 1.6;
+  min-width: 300px;
+  min-height: 80px;
+  border-radius: 58px;
+}
+
 .btn-primary:hover { opacity: .88; transform: translateY(-1px); }
+
+/*Boton borrado*/
 .btn-outline {
   background: transparent; color: var(--white);
   border: 2px solid rgba(255,255,255,.45);
@@ -156,13 +166,14 @@ nav .nav-cta:hover { opacity: .85; }
 /* ─── FEATURES ─── */
 .features {
   background: var(--offwhite);
-  padding: 80px 24px;
+  padding: 100px 24px;
 }
 .features-grid {
+  padding-top: 2%;
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* 2 columnas fijas en PC */
   gap: 20px;
-  max-width: 700px;
+  max-width: 900px;
   margin: 0 auto;
 }
 .feature-card {
@@ -189,7 +200,7 @@ nav .nav-cta:hover { opacity: .85; }
   background: #1e0e18;
   border-radius: 18px;
   padding: 20px;
-  width: 340px;
+  width: 450px;
   max-width: 100%;
   border: 1px solid rgba(233,30,140,.25);
 }
@@ -201,7 +212,7 @@ nav .nav-cta:hover { opacity: .85; }
   display: flex; gap: 12px; align-items: flex-start;
   background: rgba(255,255,255,.05);
   border-radius: 10px; padding: 14px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 .avatar {
   width: 34px; height: 34px; border-radius: 50%;
@@ -271,20 +282,22 @@ nav .nav-cta:hover { opacity: .85; }
 
 /* ─── MERCADO ─── */
 .mercado {
-  padding: 80px 24px;
+  padding: 12% 24px;
   background-color: #ffcfda;
 }
 .mercado-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 14px;
-  max-width: 860px;
+  gap: 15px;
+  max-width: 900px;
   margin: 0 auto;
 }
 .skill-card {
+  height: 100px;
   background: var(--white);
   border-radius: 14px;
   padding: 16px 20px;
+  height:
   display: flex; align-items: center; justify-content: space-between;
   box-shadow: 0 2px 12px rgba(0,0,0,.06);
   border: 1px solid rgba(233,30,140,.1);
@@ -302,7 +315,7 @@ nav .nav-cta:hover { opacity: .85; }
 /* ─── CTA FINAL ─── */
 .cta-final {
   background: linear-gradient(135deg, #1a0a10 0%, #4a0028 100%);
-  padding: 90px 24px;
+  padding: 15% 24px;
   text-align: center;
 }
 .cta-final h2 {
