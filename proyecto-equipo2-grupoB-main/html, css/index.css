@@ -18,6 +18,10 @@ body {
   overflow-x: hidden;
 }
 
+.hero, .problem, .features, .community-text, .simulacros, .mercado, .cta-final{
+  height: 100vh;
+}
+
 /* ─── NAV ─── */
 nav {
   position: fixed; top: 0; left: 0; right: 0;
@@ -268,7 +272,7 @@ nav .nav-cta:hover { opacity: .85; }
 /* ─── MERCADO ─── */
 .mercado {
   padding: 80px 24px;
-  background: var(--offwhite);
+  background-color: #ffcfda;
 }
 .mercado-grid {
   display: grid;
