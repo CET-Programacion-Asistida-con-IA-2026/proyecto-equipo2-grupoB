@@ -1,0 +1,153 @@
+body {
+  background-color: #120b14;
+  color: #ffffff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.contenedor-entrevista {
+  text-align: center;
+  max-width: 500px;
+  width: 90%;
+}
+
+.subtitulo {
+  color: #ff2a85;
+  font-size: 12px;
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 32px;
+  font-weight: 800;
+  margin: 10px 0;
+}
+
+.resaltado {
+  color: #ff2a85;
+}
+
+.descripcion {
+  color: #a096a5;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 30px;
+}
+
+.caja-chat {
+  background-color: #1c1524;
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid #2d2338;
+  text-align: left;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.perfil-reclutador {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid #2d2338;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+
+.avatar {
+  background-color: #9c27b0;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.nombre {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.rol {
+  color: #7b6f83;
+  font-size: 11px;
+}
+
+.historial-chat {
+  max-height: 300px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mensaje {
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 13px;
+  line-height: 1.4;
+  max-width: 85%;
+}
+
+.mensaje.bot {
+  background-color: #251d2f;
+  color: #e0d7e5;
+  align-self: flex-start;
+}
+
+.mensaje.usuario {
+  background-color: #ff2a85;
+  color: white;
+  align-self: flex-end;
+}
+
+.controles {
+  margin-top: 20px;
+}
+
+.btn-principal {
+  background-color: #ff2a85;
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.btn-principal:hover {
+  background-color: #d11f6b;
+}
+
+.input-contenedor {
+  display: flex;
+  gap: 10px;
+}
+
+.input-contenedor input {
+  flex: 1;
+  background-color: #1c1524;
+  border: 1px solid #2d2338;
+  padding: 12px;
+  border-radius: 8px;
+  color: white;
+}
+
+.input-contenedor button {
+  background-color: #ff2a85;
+  color: white;
+  border: none;
+  padding: 0 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.oculto { display: none !important; }
