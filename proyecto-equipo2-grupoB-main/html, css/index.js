@@ -2,6 +2,14 @@
 // TechSisterhood - script.js
 // ========================================
 
+window.addEventListener('load', () => {
+  const logueada = localStorage.getItem('logueada');
+  if (logueada) {
+    const cp = document.querySelector('.contenido-protegido');
+    if (cp) cp.style.display = 'block';
+  }
+});
+
 document.addEventListener('DOMContentLoaded', () => {
   initToast();
   initNavCTAs();
@@ -235,3 +243,66 @@ function initSmoothScroll() {
     });
   });
 }
+
+function abrirModal() {
+  document.getElementById('modal').style.display = 'flex';
+}
+
+function cerrarModal() {
+  document.getElementById('modal').style.display = 'none';
+}
+
+function mostrarLogin() {
+  document.getElementById('vista-registro').style.display = 'none';
+  document.getElementById('vista-login').style.display = 'block';
+}
+
+function mostrarRegistro() {
+  document.getElementById('vista-login').style.display = 'none';
+  document.getElementById('vista-registro').style.display = 'block';
+}
+
+function registrar() {
+  const nombre = document.getElementById('reg-nombre').value;
+  const email = document.getElementById('reg-email').value;
+  const pass = document.getElementById('reg-pass').value;
+
+  if (!nombre || !email || !pass) {
+    alert('Completá todos los campos');
+    return;
+  }
+
+  localStorage.setItem('usuario', JSON.stringify({ nombre, email, pass }));
+  localStorage.setItem('logueada', 'true');
+  cerrarModal();
+  const cp = document.querySelector('.contenido-protegido');
+  if (cp) cp.style.display = 'block';
+}
+
+function login() {
+  const email = document.getElementById('log-email').value;
+  const pass = document.getElementById('log-pass').value;
+  const usuario = JSON.parse(localStorage.getItem('usuario'));
+
+  if (!usuario || usuario.email !== email || usuario.pass !== pass) {
+    alert('Email o contraseña incorrectos');
+    return;
+  }
+
+  localStorage.setItem('logueada', 'true');
+  cerrarModal();
+  const cp = document.querySelector('.contenido-protegido');
+  if (cp) cp.style.display = 'block';
+}
+
+// Conectar botones
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.btn-primary, .nav-cta').forEach(btn => {
+    btn.addEventListener('click', abrirModal);
+  });
+
+ if (localStorage.getItem('logueada')) {
+  const cp = document.querySelector('.contenido-protegido');
+  if (cp) cp.style.display = 'block';
+}
+});

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TechSisterhood | Acceso</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="login.css"/>
+</head>
+<body>
+
+  <div class="login-container">
+    <div class="login-logo">Tech<span>Sisterhood</span></div>
+
+    <div class="login-box">
+
+      <div id="vista-registro">
+        <h2>Registro</h2>
+        <div class="input-group">
+          <span>👤</span>
+          <input type="text" id="reg-nombre" placeholder="Nombre" />
+        </div>
+        <div class="input-group">
+          <span>✉️</span>
+          <input type="email" id="reg-email" placeholder="Correo" />
+        </div>
+        <div class="input-group">
+          <span>🔒</span>
+          <input type="password" id="reg-pass" placeholder="Contraseña" />
+        </div>
+        <div class="login-btns">
+          <button class="btn-registro" onclick="registrar()">Registro</button>
+          <button class="btn-switch" onclick="mostrarLogin()">Login</button>
+        </div>
+        <p class="link-cambio">¿Ya tenés cuenta? <span onclick="mostrarLogin()">Iniciá sesión</span></p>
+      </div>
+
+      <div id="vista-login" style="display:none">
+        <h2>Login</h2>
+        <div class="input-group">
+          <span>✉️</span>
+          <input type="email" id="log-email" placeholder="Correo" />
+        </div>
+        <div class="input-group">
+          <span>🔒</span>
+          <input type="password" id="log-pass" placeholder="Contraseña" />
+        </div>
+        <div class="login-btns">
+          <button class="btn-registro" onclick="login()">Login</button>
+          <button class="btn-switch" onclick="mostrarRegistro()">Registro</button>
+        </div>
+        <p class="link-cambio">¿No tenés cuenta? <span onclick="mostrarRegistro()">Registrate</span></p>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="login.js"></script>
+</body>
+</html>

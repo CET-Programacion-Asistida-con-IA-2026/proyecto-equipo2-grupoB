@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulacro de Entrevista</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="contenedor-entrevista">
+    <span class="subtitulo">SIMULACROS</span>
+    <h1>PRACTICÁ PARA UNA<br><span class="resaltado">ENTREVISTA REAL</span></h1>
+    <p class="descripcion">Preguntas reales con feedback en tiempo real. Que la primera entrevista te encuentre confiada.</p>
+
+    <!-- Caja del Chat -->
+    <div class="caja-chat">
+      <div class="perfil-reclutador">
+        <div class="avatar">A</div>
+        <div>
+          <div class="nombre">Andrea - Tech Recruiter</div>
+          <div class="rol">Entrevistadora simulada</div>
+        </div>
+      </div>
+
+      <!-- Aquí se irán agregando los mensajes dinámicamente -->
+      <div class="historial-chat" id="historialChat">
+        <div class="mensaje bot">Hola! Presioná el botón de abajo para empezar el simulacro de React.</div>
+      </div>
+    </div>
+
+    <!-- Controles -->
+    <div class="controles">
+      <button id="btnAccion" class="btn-principal">Empezar simulacro</button>
+      <div class="input-contenedor oculto" id="contenedorEntrada">
+        <input type="text" id="inputUsuario" placeholder="Escribí tu respuesta técnica aquí...">
+        <button id="btnEnviar">Enviar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
