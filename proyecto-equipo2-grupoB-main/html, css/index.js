@@ -306,3 +306,88 @@ document.addEventListener('DOMContentLoaded', () => {
   if (cp) cp.style.display = 'block';
 }
 });
+
+function abrirModalComunidad() {
+  document.getElementById('modal-comunidad').style.display = 'flex';
+}
+
+function cerrarModalComunidad() {
+  document.getElementById('modal-comunidad').style.display = 'none';
+}
+
+function publicarComentario() {
+  const usuario = document.getElementById('com-usuario').value.trim();
+  const mensaje = document.getElementById('com-mensaje').value.trim();
+
+  if (!usuario || !mensaje) {
+    alert('Completá tu nombre y mensaje');
+    return;
+  }
+
+  // Crear nuevo post en el foro
+  const foro = document.querySelector('.forum-mockup');
+  const colores = ['#e91e8c', '#7c3aed', '#0891b2', '#059669', '#d97706'];
+  const color = colores[Math.floor(Math.random() * colores.length)];
+  const inicial = usuario.charAt(0).toUpperCase();
+
+  const nuevoPost = document.createElement('div');
+  nuevoPost.className = 'forum-post';
+  nuevoPost.style.animation = 'fadeIn 0.4s ease';
+  nuevoPost.innerHTML = `
+    <div class="avatar" style="background:${color}">${inicial}</div>
+    <div class="post-body">
+      <div><span class="post-user">${usuario}</span><span class="post-time">ahora</span></div>
+      <div class="post-text">${mensaje}</div>
+    </div>
+  `;
+
+  foro.insertBefore(nuevoPost, foro.firstChild);
+
+  // Limpiar y cerrar
+  document.getElementById('com-usuario').value = '';
+  document.getElementById('com-mensaje').value = '';
+  cerrarModalComunidad();
+
+  // Mensaje de gracias
+  setTimeout(() => {
+    alert('¡Gracias por compartir! Tu mensaje ya está en la comunidad 💜');
+  }, 300);
+}
+function abrirLinkedin() {
+  document.getElementById('modal-linkedin').style.display = 'flex';
+}
+
+function cerrarLinkedin() {
+  document.getElementById('modal-linkedin').style.display = 'none';
+}
+
+function verificarChecklist() {
+  const checks = document.querySelectorAll('.linkedin-checklist input[type="checkbox"]');
+  const total = checks.length;
+  const completados = [...checks].filter(c => c.checked).length;
+  
+  const porcentaje = (completados / total) * 100;
+  document.getElementById('progreso-fill').style.width = porcentaje + '%';
+  document.getElementById('progreso-texto').textContent = `${completados}/${total} completados`;
+
+  if (completados === total) {
+    document.getElementById('btn-guia').style.display = 'block';
+  } else {
+    document.getElementById('btn-guia').style.display = 'none';
+  }
+}
+
+function accionProtegida(callback) {
+  const logueada = localStorage.getItem('logueada');
+  if (!logueada) {
+    abrirModal();
+  } else {
+    callback();
+  }
+}
+
+function irSimulacro() {
+  accionProtegida(() => {
+    window.location.href = 'btnsimulacro/btn.html';
+  });
+}

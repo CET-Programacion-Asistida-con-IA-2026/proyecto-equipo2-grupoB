@@ -16,21 +16,23 @@ const btnEnviar = document.getElementById('btnEnviar');
 // Banco de preguntas fijas (podés agregar o cambiar las que quieras)
 // ----------------------------------------
 const preguntasSimuladas = [
-  '¿Podés explicarme qué es el Virtual DOM y por qué React lo usa?',
-  '¿Qué diferencia hay entre let, const y var en JavaScript?',
-  '¿Cómo manejarías el estado en una app de React?',
-  '¿Qué es una API REST y qué métodos HTTP conocés?',
-  '¿Qué es la normalización en bases de datos?'
+  '¿Qué te inspiró a dar el salto al sector tecnológico?',
+  '¿Qué habilidades de tu carrera anterior te serán más útiles en tech?',
+  '¿Cómo te mantenés actualizada con las tecnologías que cambian rápidamente?',
+  '¿Qué herramientas o recursos usás para resolver un problema de código?',
+  '¿Cómo manejás la frustración cuando un proyecto no sale como esperabas?',
+  '¿Cómo priorizás tus tareas cuando tenés múltiples entregas pendientes?',
+  '¿De qué manera comunicás ideas técnicas a personas que no son del área?',
+  '¿Qué buscás en la cultura laboral de una empresa tecnológica?'
 ];
 
 // Frases cortas de "feedback" que se muestran después de cada respuesta de la usuaria
 const feedbacksSimulados = [
-  '¡Bien! Se nota que lo tenés claro.',
-  'Buena respuesta, seguimos con la próxima.',
-  'Correcto, vamos con otra pregunta.',
-  'Interesante enfoque, avancemos.'
+  '¡Muy buena respuesta! Esa perspectiva es exactamente lo que buscan los recruiters 💪',
+  '¡Excelente! Seguimos con la próxima pregunta.',
+  '¡Me encanta ese enfoque! Avancemos.',
+  '¡Genial! Eso demuestra madurez profesional 🌟'
 ];
-
 let preguntaIndex = 0;
 
 // Al presionar "Empezar simulacro"
