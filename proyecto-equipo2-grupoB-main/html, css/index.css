@@ -100,7 +100,7 @@ nav .nav-cta:hover { opacity: .85; }
 .hero-btns { margin-top: 5%; display: flex; justify-content: center; flex-wrap: wrap; }
 
 /* ─── BUTTONS ─── */
-.btn-primary {
+.btn-primary , .btn-simulacro{
   background: var(--pink); color: var(--white);
   border: none; border-radius: 28px;
   padding: 13px 30px; font-size: .95rem; font-weight: 700;
