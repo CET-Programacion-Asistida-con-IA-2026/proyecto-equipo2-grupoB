@@ -1,7 +1,6 @@
 // ========================================
 // TechSisterhood - script.js
 // ========================================
-
 window.addEventListener('load', () => {
   const logueada = localStorage.getItem('logueada');
   if (logueada) {
@@ -12,11 +11,11 @@ window.addEventListener('load', () => {
 
 document.addEventListener('DOMContentLoaded', () => {
   initToast();
-  initNavCTAs();
+  initJoinButtons();
   initStatsCounter();
   initFeatureCards();
-  initSimulacro();
   initSmoothScroll();
+  initAuthCheck();
 });
 
 // ----------------------------------------
@@ -39,37 +38,25 @@ function initToast() {
 }
 
 // ----------------------------------------
-// Botones tipo CTA ("Quiero unirme", etc.)
+// Botones de unirse -> abren el modal de registro
+// (unificado: antes había dos listeners separados
+// que hacían cosas distintas sobre los mismos botones)
 // ----------------------------------------
-function initNavCTAs() {
+function initJoinButtons() {
+  // Solo los botones de "Quiero unirme" (hero y CTA final).
+  // "Iniciar sesión" queda afuera: ya tiene su propio onclick
+  // en el HTML que redirige a login.html, no debe abrir el modal.
   const joinButtons = document.querySelectorAll(
-    '.nav-cta, .btn-primary, .btn-outline'
+    '#botonPrincipal, .cta-final .btn-primary'
   );
 
   joinButtons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const text = btn.textContent.trim().toLowerCase();
-
-      if (text.includes('unirme')) {
-        showToast('¡Gracias por tu interés! Pronto vas a poder registrarte 💖');
-      } else if (text.includes('conocer')) {
-        document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' });
-      } else if (text.includes('simulacro')) {
-        startSimulacro();
-      }
-    });
+    btn.addEventListener('click', abrirModal);
   });
 
   // Botón "Unirme a la comunidad"
-  const joinCommunityBtn = document.getElementById('join-community-btn');
-  joinCommunityBtn?.addEventListener('click', () => {
-    showToast('¡Bienvenida al foro! Pronto vas a poder publicar 🚀');
-  });
-
-  // Botón final
-  const ctaFinalBtn = document.getElementById('cta-final-btn');
-  ctaFinalBtn?.addEventListener('click', () => {
-    showToast('¡Listo! Te vamos a contactar para que empieces 🙌');
+  document.querySelectorAll('.community-text .btn-pink-outline').forEach((btn) => {
+    // ya tiene onclick="abrirModalComunidad()" en el HTML, no se toca
   });
 }
 
@@ -120,18 +107,22 @@ function initFeatureCards() {
   const messages = {
     0: 'Te llevamos a la sección de Simulacros 👇',
     1: 'Te llevamos a la sección de Comunidad 👇',
-    2: 'Próximamente: guía de LinkedIn paso a paso ✍️',
     3: 'Te llevamos a la sección de Mercado laboral 👇'
   };
 
   const targets = {
     0: '#simulacros',
     1: '#community',
-    2: null,
     3: '#mercado'
   };
 
   cards.forEach((card, i) => {
+    // La tarjeta de LinkedIn (índice 2) queda afuera: su propia
+    // flecha ya tiene onclick="abrirLinkedin()" en el HTML.
+    // Si se agrega este listener también, al tocar la flecha
+    // se disparaban el toast Y el modal al mismo tiempo.
+    if (i === 2) return;
+
     card.style.cursor = 'pointer';
     card.addEventListener('click', () => {
       showToast(messages[i]);
@@ -141,94 +132,6 @@ function initFeatureCards() {
       }
     });
   });
-}
-
-// ----------------------------------------
-// Simulacro de entrevista interactivo
-// ----------------------------------------
-const simulacroQuestions = [
-  {
-    question: '¿Qué diferencia hay entre let, const y var en JavaScript?',
-    answer: '“let” y “const” tienen scope de bloque, mientras que “var” tiene scope de función. “const” no permite reasignación, “let” sí. “var” además sufre hoisting con valor undefined.'
-  },
-  {
-    question: '¿Qué es una API REST y qué métodos HTTP conocés?',
-    answer: 'Una API REST expone recursos a través de URLs y usa métodos HTTP como GET, POST, PUT, PATCH y DELETE para operar sobre esos recursos de forma estándar.'
-  },
-  {
-    question: '¿Cómo manejarías el estado en una app de React?',
-    answer: 'Para estado local uso useState o useReducer. Para estado compartido entre componentes, Context API o librerías como Redux o Zustand, dependiendo de la complejidad.'
-  },
-  {
-    question: '¿Qué es la normalización en bases de datos?',
-    answer: 'Es el proceso de organizar las tablas para reducir la redundancia de datos y mejorar la integridad, dividiendo la información en tablas relacionadas mediante claves.'
-  }
-];
-
-let simulacroIndex = 0;
-let simulacroRunning = false;
-
-function initSimulacro() {
-  const btn = document.getElementById('simulacro-btn');
-  btn?.addEventListener('click', startSimulacro);
-}
-
-function startSimulacro() {
-  const chatMockup = document.getElementById('chat-mockup');
-  if (!chatMockup) return;
-
-  if (simulacroRunning) {
-    showToast('El simulacro ya está en curso 👀');
-    return;
-  }
-
-  simulacroRunning = true;
-  simulacroIndex = 0;
-
-  // Limpiar burbujas previas, dejando solo el header
-  const header = chatMockup.querySelector('.chat-header');
-  chatMockup.innerHTML = '';
-  chatMockup.appendChild(header);
-
-  showToast('¡Arrancó el simulacro de entrevista! 🎤');
-  nextSimulacroQuestion(chatMockup);
-}
-
-function nextSimulacroQuestion(chatMockup) {
-  if (simulacroIndex >= simulacroQuestions.length) {
-    const endBubble = document.createElement('div');
-    endBubble.className = 'chat-bubble bubble-recruiter';
-    endBubble.textContent = '¡Excelente! Eso fue todo por hoy. Seguí practicando, vas muy bien 💪';
-    chatMockup.appendChild(endBubble);
-    simulacroRunning = false;
-    return;
-  }
-
-  const current = simulacroQuestions[simulacroIndex];
-
-  // Pregunta del recruiter
-  const questionBubble = document.createElement('div');
-  questionBubble.className = 'chat-bubble bubble-recruiter';
-  questionBubble.textContent = current.question;
-  chatMockup.appendChild(questionBubble);
-
-  // Indicador de "escribiendo..."
-  const typingBubble = document.createElement('div');
-  typingBubble.className = 'chat-bubble bubble-user typing';
-  typingBubble.innerHTML = '<span></span><span></span><span></span>';
-  chatMockup.appendChild(typingBubble);
-
-  setTimeout(() => {
-    typingBubble.remove();
-
-    const answerBubble = document.createElement('div');
-    answerBubble.className = 'chat-bubble bubble-user';
-    answerBubble.textContent = current.answer;
-    chatMockup.appendChild(answerBubble);
-
-    simulacroIndex++;
-    setTimeout(() => nextSimulacroQuestion(chatMockup), 1400);
-  }, 1500);
 }
 
 // ----------------------------------------
@@ -244,6 +147,9 @@ function initSmoothScroll() {
   });
 }
 
+// ----------------------------------------
+// Modal de registro / login
+// ----------------------------------------
 function abrirModal() {
   document.getElementById('modal').style.display = 'flex';
 }
@@ -268,13 +174,16 @@ function registrar() {
   const pass = document.getElementById('reg-pass').value;
 
   if (!nombre || !email || !pass) {
-    alert('Completá todos los campos');
+    showToast('Completá todos los campos');
     return;
   }
 
+  // Nota: esto guarda la contraseña sin cifrar en localStorage.
+  // Sirve para una demo, pero no para datos reales de usuarias.
   localStorage.setItem('usuario', JSON.stringify({ nombre, email, pass }));
   localStorage.setItem('logueada', 'true');
   cerrarModal();
+  showToast(`¡Bienvenida, ${nombre}! 🎉`);
   const cp = document.querySelector('.contenido-protegido');
   if (cp) cp.style.display = 'block';
 }
@@ -282,31 +191,30 @@ function registrar() {
 function login() {
   const email = document.getElementById('log-email').value;
   const pass = document.getElementById('log-pass').value;
-  const usuario = JSON.parse(localStorage.getItem('usuario'));
+  const usuario = JSON.parse(localStorage.getItem('usuario') || 'null');
 
   if (!usuario || usuario.email !== email || usuario.pass !== pass) {
-    alert('Email o contraseña incorrectos');
+    showToast('Email o contraseña incorrectos');
     return;
   }
 
   localStorage.setItem('logueada', 'true');
   cerrarModal();
+  showToast('¡Bienvenida de nuevo! 👋');
   const cp = document.querySelector('.contenido-protegido');
   if (cp) cp.style.display = 'block';
 }
 
-// Conectar botones
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.btn-primary, .nav-cta').forEach(btn => {
-    btn.addEventListener('click', abrirModal);
-  });
-
- if (localStorage.getItem('logueada')) {
-  const cp = document.querySelector('.contenido-protegido');
-  if (cp) cp.style.display = 'block';
+function initAuthCheck() {
+  if (localStorage.getItem('logueada')) {
+    const cp = document.querySelector('.contenido-protegido');
+    if (cp) cp.style.display = 'block';
+  }
 }
-});
 
+// ----------------------------------------
+// Modal de comunidad
+// ----------------------------------------
 function abrirModalComunidad() {
   document.getElementById('modal-comunidad').style.display = 'flex';
 }
@@ -320,11 +228,10 @@ function publicarComentario() {
   const mensaje = document.getElementById('com-mensaje').value.trim();
 
   if (!usuario || !mensaje) {
-    alert('Completá tu nombre y mensaje');
+    showToast('Completá tu nombre y mensaje');
     return;
   }
 
-  // Crear nuevo post en el foro
   const foro = document.querySelector('.forum-mockup');
   const colores = ['#e91e8c', '#7c3aed', '#0891b2', '#059669', '#d97706'];
   const color = colores[Math.floor(Math.random() * colores.length)];
@@ -343,16 +250,18 @@ function publicarComentario() {
 
   foro.insertBefore(nuevoPost, foro.firstChild);
 
-  // Limpiar y cerrar
   document.getElementById('com-usuario').value = '';
   document.getElementById('com-mensaje').value = '';
   cerrarModalComunidad();
 
-  // Mensaje de gracias
   setTimeout(() => {
-    alert('¡Gracias por compartir! Tu mensaje ya está en la comunidad 💜');
+    showToast('¡Gracias por compartir! Tu mensaje ya está en la comunidad 💜');
   }, 300);
 }
+
+// ----------------------------------------
+// Modal de LinkedIn
+// ----------------------------------------
 function abrirLinkedin() {
   document.getElementById('modal-linkedin').style.display = 'flex';
 }
@@ -365,18 +274,19 @@ function verificarChecklist() {
   const checks = document.querySelectorAll('.linkedin-checklist input[type="checkbox"]');
   const total = checks.length;
   const completados = [...checks].filter(c => c.checked).length;
-  
+
   const porcentaje = (completados / total) * 100;
   document.getElementById('progreso-fill').style.width = porcentaje + '%';
   document.getElementById('progreso-texto').textContent = `${completados}/${total} completados`;
 
-  if (completados === total) {
-    document.getElementById('btn-guia').style.display = 'block';
-  } else {
-    document.getElementById('btn-guia').style.display = 'none';
-  }
+  document.getElementById('btn-guia').style.display =
+    completados === total ? 'block' : 'none';
 }
 
+// ----------------------------------------
+// Helper para acciones que requieren estar logueada
+// (no se usa todavía en el HTML, queda disponible)
+// ----------------------------------------
 function accionProtegida(callback) {
   const logueada = localStorage.getItem('logueada');
   if (!logueada) {

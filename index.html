@@ -19,7 +19,7 @@
     <li><a href="#simulacros">Simulacros</a></li>
     <li><a href="#mercado">Mercado</a></li>
   </ul>
- <button class="nav-cta" onclick="window.location.href='quierounirme/login.html'">Iniciar sesión</button>
+ <button class="nav-cta" onclick="abrirModal(); mostrarLogin();">Iniciar sesión</button>
 </nav>
 
 <!-- HERO -->
@@ -241,8 +241,8 @@
         <input type="password" id="log-pass" placeholder="Contraseña" />
       </div>
       <div class="modal-btns">
-        <button class="btn-refgistro" onclick="login()">Login</button>
-        <button class="btn-switch" onclick="mostrarRegistro()">Registro</button>
+        <button class="btn-registro" onclick="mostrarRegistro()">Registro</button>
+        <button class="btn-switch" onclick="login()">Login</button>
       </div>
       <p class="link-cambio">¿No tenés cuenta? <span onclick="mostrarRegistro()">Registrate</span></p>
     </div>

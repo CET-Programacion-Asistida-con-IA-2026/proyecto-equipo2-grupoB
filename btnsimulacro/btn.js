@@ -118,3 +118,9 @@ function agregarMensajePantalla(texto, clase) {
   historialChatDiv.appendChild(div);
   historialChatDiv.scrollTop = historialChatDiv.scrollHeight; // Auto-scroll abajo
 }
+
+const btnTerminar = document.getElementById('btnTerminar');
+
+btnTerminar.addEventListener('click', () => {
+  window.location.href = '../index.html';
+});
